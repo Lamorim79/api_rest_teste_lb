@@ -1,0 +1,23 @@
+# Arquivos de compilação
+*.pyc
+*.pyo
+*.pyd
+
+# Diretório de cache do Python 3
+__pycache__/
+
+# Banco de dados SQLite
+db.sqlite3
+
+# Ambiente virtual
+venv/
+
+# Arquivo de configuração local
+.env
+
+# Arquivos de logs
+*.log
+
+# Arquivos de configuração específicos de IDEs
+.idea/
+.vscode/
