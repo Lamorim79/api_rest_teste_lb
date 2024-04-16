@@ -21,13 +21,13 @@ CRUD
 - MySQL instalado
 
 ## Como rodar a aplicação
-1. Fazer o download do projeto a partir de: <br> (Link) https://github.com/Lamorim79/api_rest_teste_lb
-2. Criar ambiente virtual <br> `py -m venv venv `
-3. Ativar o ambiente virtual <br>`./venv/Scripts/activate `
-4. Instalar o conector MySQL <br>`pip install mysqlclient`
-5. Instalar requisições HTTP <br>`pip install requests` 
-6. Prepara as tabelas para serem enviadas ao bd <br>`python manage.py makemigrations`
-7. Cria as tabelas no bd <br>`python manage.py migrate`
+1. Fazer o download do projeto a partir de: <br> (Link) https://github.com/Lamorim79/api_rest_teste_lb <br>
+2. Criar ambiente virtual <br> `py -m venv venv ` <p>
+3. Ativar o ambiente virtual <br>`./venv/Scripts/activate ` <p>
+4. Instalar o conector MySQL <br>`pip install mysqlclient` <p>
+5. Instalar requisições HTTP <br>`pip install requests` <p>
+6. Prepara as tabelas para serem enviadas ao bd <br>`python manage.py makemigrations` <p>
+7. Cria as tabelas no bd <br>`python manage.py migrate` <p>
 8. Executa a API <br>`python manage.py runserver`
 
 
