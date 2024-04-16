@@ -4,8 +4,6 @@ from django.views import View
 from django.views.decorators.csrf import csrf_exempt
 from .models import Cliente
 from .models import ClienteProduto
-from .serializers import ClienteSerializer
-from .serializers import ClienteProdutoSerializer
 import json
 import requests
 
@@ -41,7 +39,8 @@ class ClientesView(View):
         if not email:
             Cliente.objects.create(nome=jd['nome'],email=jd['email'])
             dados = {'message': "Successo"}
-        else: dados = {'message': "Email já cadastrado"}     
+        else: 
+            dados = {'message': "Email já cadastrado"}     
         return JsonResponse(dados)
     
     def put(self,request,id):
@@ -109,7 +108,7 @@ class ClienteProdutosView(View):
                     ClienteProduto.objects.create(id_cliente=jd['id_cliente'],id_produto=jd['id_produto'])
                     dados = {'message': "Successo"}
                 else:
-                    dados = {'message': "Esse produto Não existe"}                   
+                    dados = {'message': "Esse produto não existe"}                   
             except Exception as e:                
                 return JsonResponse({'error': str(e)}, status=500)       
         else: dados = {'message': "Produto já favoritado"}         
