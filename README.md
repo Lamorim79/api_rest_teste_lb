@@ -9,12 +9,12 @@ Finalizado
 
 CRUD
 
-- CREATE criar novo registro de Cliente  <br> http://127.0.0.1:8000/api/clientes   
-- CREATE criar uma lista de Produtos Favoritos única para o Cliente <br> http://127.0.0.1:8000/api/clientes/produtos
-- READ consultar os Clientes cadastrados <br> http://127.0.0.1:8000/api/clientes
-- READ consultar os Produtos Favoritos do Cliente <br> http://127.0.0.1:8000/api/clientes/1/produtos
-- UPDATE atualizar os dados do Cliente <br> http://127.0.0.1:8000/api/clientes/1
-- DELETE remover o cadastro do Cliente <br> http://127.0.0.1:8000/api/clientes/1
+- CREATE criar novo registro de Cliente  <br> http://127.0.0.1:8000/api/clientes <p>  
+- CREATE criar uma lista de Produtos Favoritos única para o Cliente <br> http://127.0.0.1:8000/api/clientes/produtos <p>
+- READ consultar os Clientes cadastrados <br> http://127.0.0.1:8000/api/clientes <p>
+- READ consultar os Produtos Favoritos do Cliente <br> http://127.0.0.1:8000/api/clientes/1/produtos <p>
+- UPDATE atualizar os dados do Cliente <br> http://127.0.0.1:8000/api/clientes/1 <p>
+- DELETE remover o cadastro do Cliente <br> http://127.0.0.1:8000/api/clientes/1 
 
 ## Pré-requisitos
 - Python instalado
