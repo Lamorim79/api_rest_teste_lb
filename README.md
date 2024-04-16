@@ -31,5 +31,10 @@ CRUD
 8. Executa a API <br>`python manage.py runserver`
 
 
+## Testes realizados com: 
+- Thunder Client
+
+
+
 ## Autor
 - [Luciano Amorim](https://github.com/Lamorim79)
