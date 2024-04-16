@@ -23,28 +23,26 @@ class ClientesView(View):
             clientes=list(Cliente.objects.filter(id=id).values())
             if len(clientes) > 0:
                 cliente=clientes[0]
-                datos = {'message': "Successo", 'cliente': cliente}
+                dados = {'message': "Successo", 'cliente': cliente}
             else:
-                datos = {'message': "cliente não encontrado..."} 
-            return JsonResponse(datos)       
+                dados = {'message': "cliente não encontrado..."} 
+            return JsonResponse(dados)       
         else:    
             clientes = list(Cliente.objects.values())
             if len(clientes) > 0:
-                datos = {'message': "Successo", 'Clientes': clientes}
+                dados = {'message': "Successo", 'Clientes': clientes}
             else:
-                datos = {'message': "clientes não encontrados..."}
-            return JsonResponse(datos)        
+                dados = {'message': "Clientes não encontrados..."}
+            return JsonResponse(dados)        
     
     def post(self,request):
         jd = json.loads(request.body)
         email = Cliente.objects.filter(email=jd['email'])
         if not email:
             Cliente.objects.create(nome=jd['nome'],email=jd['email'])
-            datos = {'message': "Successo"}
-        else: datos = {'message': "Email já cadastrado"}  
-               
-        
-        return JsonResponse(datos)
+            dados = {'message': "Successo"}
+        else: dados = {'message': "Email já cadastrado"}     
+        return JsonResponse(dados)
     
     def put(self,request,id):
         jd = json.loads(request.body)
@@ -53,20 +51,20 @@ class ClientesView(View):
             cliente=clientes[0]        
             cliente.nome=jd['nome']
             cliente.save()
-            datos = {'message': "Successo"} 
+            dados = {'message': "Successo"} 
         else:
-            datos = {'message': "Cliente não encontrado..."}
-        return JsonResponse(datos)         
+            dados = {'message': "Cliente não encontrado..."}
+        return JsonResponse(dados)         
     
     def delete(self,request,id):
          clientes=list(Cliente.objects.filter(id=id))
          if len(clientes) > 0:
              Cliente.objects.filter(id=id).delete()
              ClienteProduto.objects.filter(id_cliente=id).delete()
-             datos = {'message': "Excluído com successo"}
+             dados = {'message': "Excluído com successo"}
          else:
-             datos = {'message': "Cliente não encontrado..."}
-         return JsonResponse(datos)         
+             dados = {'message': "Cliente não encontrado..."}
+         return JsonResponse(dados)         
   
 
 class ClienteProdutosView(View):
@@ -84,56 +82,37 @@ class ClienteProdutosView(View):
                 'produtos_favoritos':[]
             }
             
-            for produto in clienteProdutos:
-                
+            for produto in clienteProdutos:                
                 url_api = 'http://challenge-api.luizalabs.com/api/product/'+produto['id_produto']+'/'
                 print(url_api)
                 try:
-                    # Fazendo a requisição GET
-                    response = requests.get(url_api)
-
-                    # Verifica se a requisição foi bem-sucedida (código 200)
+                    response = requests.get(url_api)                    
                     if response.status_code == 200:
-                        # Convertendo a resposta para JSON
-                        data = response.json()
-                        # Retornando os dados como resposta da sua API
-                        print(data)
-                        
-                        resposta_final['produtos_favoritos'].append(data)
-                    
+                        dados = response.json()                             
+                        resposta_final['produtos_favoritos'].append(dados)                    
                 except Exception as e:
-                    # Se ocorrer algum erro na requisição, retorna um erro
                     return JsonResponse({'error': str(e)}, status=500)
-            datos = {'message': "Successo",'clienteProdutos':resposta_final}
+            dados = {'message': "Successo",'clienteProdutos':resposta_final}
         else:
-             datos = {'message': "Produto não encontrado..."}
-        return JsonResponse(datos)
+             dados = {'message': "Produto não encontrado..."}
+        return JsonResponse(dados)
             
     def post(self,request):
         jd = json.loads(request.body)
         produto_favorito = ClienteProduto.objects.filter(id_cliente=jd['id_cliente'],id_produto=jd['id_produto'])
         if not produto_favorito:
-            url_api = 'http://challenge-api.luizalabs.com/api/product/'+jd['id_produto']+'/'
-            print(url_api)
-            try:
-                # Fazendo a requisição GET
+            url_api = 'http://challenge-api.luizalabs.com/api/product/'+jd['id_produto']+'/'            
+            try:             
                 response = requests.get(url_api)
-
-                # Verifica se a requisição foi bem-sucedida (código 200)
                 if response.status_code == 200:
                     print(response)
                     ClienteProduto.objects.create(id_cliente=jd['id_cliente'],id_produto=jd['id_produto'])
-                    datos = {'message': "Successo"}
+                    dados = {'message': "Successo"}
                 else:
-                    datos = {'message': "Esse produto Não existe"}                   
-            except Exception as e:
-                # Se ocorrer algum erro na requisição, retorna um erro
-                return JsonResponse({'error': str(e)}, status=500)
-            
-            
-        else: datos = {'message': "Produto já favoritado"}
-           
-         
-        return JsonResponse(datos)
+                    dados = {'message': "Esse produto Não existe"}                   
+            except Exception as e:                
+                return JsonResponse({'error': str(e)}, status=500)       
+        else: dados = {'message': "Produto já favoritado"}         
+        return JsonResponse(dados)
     
     
